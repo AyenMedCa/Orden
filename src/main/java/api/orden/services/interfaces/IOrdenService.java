@@ -12,6 +12,7 @@ public interface IOrdenService {
     public List<Orden> findAll();
 
     Orden updateStatus(Status status, long id);
+    Orden update(long id, Orden orden);
 
     public void deleteById(long id);
 }

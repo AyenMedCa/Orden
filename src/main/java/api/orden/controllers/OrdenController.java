@@ -39,6 +39,11 @@ public class OrdenController {
         return new ResponseEntity<>(updatedOrden, HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Orden> update(@PathVariable Long id,@RequestBody Orden orden) {
+        return ResponseEntity.ok(ordenService.update(id, orden));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
         ordenService.deleteById(id);
