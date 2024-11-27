@@ -2,6 +2,7 @@ package api.orden.services.implementations;
 
 import api.orden.model.entities.Orden;
 import api.orden.model.enums.Status;
+import api.orden.model.interfaces.ProductClient;
 import api.orden.repositories.OrdenRepository;
 import api.orden.services.interfaces.IOrdenService;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class OrdenServiceImpl implements IOrdenService {
 
     private final OrdenRepository ordenRepository;
+    private final ProductClient productClient;
 
     @Override
     public Orden save(Orden orden) {
@@ -29,7 +31,7 @@ public class OrdenServiceImpl implements IOrdenService {
 
     @Override
     public List<Orden> findAll() {
-        return List.of();
+        return ordenRepository.findAll();
     }
 
     @Override
@@ -59,6 +61,11 @@ public class OrdenServiceImpl implements IOrdenService {
             existingOrden.setUserId(orden.getUserId());
         }
         return ordenRepository.save(existingOrden);
+    }
+
+    @Override
+    public Boolean existProducto(Long id) {
+        return productClient.existProducto(id);
     }
 
 

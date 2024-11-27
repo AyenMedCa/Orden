@@ -13,6 +13,7 @@ public interface IOrdenService {
 
     Orden updateStatus(Status status, long id);
     Orden update(long id, Orden orden);
+    Boolean existProducto(Long id);
 
     public void deleteById(long id);
 }
